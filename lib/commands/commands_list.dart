@@ -1,4 +1,5 @@
 import 'impl/commads_export.dart';
+import 'impl/commads_export.dart';
 
 final commands = {
   'create': {
@@ -13,6 +14,7 @@ final commands = {
     'locales': () => GenerateLocalesCommand(),
     'model': () => GenerateModelCommand(),
   },
+  'hello': () => HelpCommand(),
   'help': () => HelpCommand(),
   'init': () => InitCommand(),
   'install': () => InstallCommand(),
