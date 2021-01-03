@@ -65,11 +65,13 @@ abstract class LocaleKeys {
   static const sucess_page_create = 'sucess_page_create';
   static const sucess_locale_generate = 'sucess_locale_generate';
   static const sucess_getx_pattern_generated = 'sucess_getx_pattern_generated';
+  static const sucess_getx_modular_generated = 'sucess_getx_modular_generated';
   static const sucess_clean_Pattern_generated =
       'sucess_clean_Pattern_generated';
   static const sucess_file_formatted = 'sucess_file_formatted';
   static const sucess_package_removed = 'sucess_package_removed';
   static const sucess_package_installed = 'sucess_package_installed';
+  static const sucess_asset_added = 'sucess_asset_added';
   static const sucess_update_cli = 'sucess_update_cli';
   static const sucess_add_controller_in_bindings =
       'sucess_add_controller_in_bindings';
@@ -144,11 +146,14 @@ abstract class Locales {
     'sucess_locale_generate': 'locale files generated successfully.',
     'sucess_getx_pattern_generated':
         'GetX Pattern structure successfully generated.',
+    'sucess_getx_modular_generated':
+        'GetX Modular Architecture Pattern structure successfully generated.',
     'sucess_clean_pattern_generated':
         'CLEAN Pattern structure successfully generated.',
     'sucess_file_formatted': ' \'%s\' was successfully formatted',
     'sucess_package_removed': 'Package: %s removed!',
     'sucess_package_installed': '\'Package: %s installed!',
+    'sucess_asset_added': 'Asset: %s added to pubspec',
     'sucess_update_cli': 'Upgrade complete',
     'sucess_add_controller_in_bindings':
         'The %s has been added to binging at path: %s\'',

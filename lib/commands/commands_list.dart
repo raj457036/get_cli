@@ -1,6 +1,16 @@
 import 'impl/commads_export.dart';
 
 final commands = {
+  'add': {
+    'connectivity': () => CreateControllerCommand(),
+    'local_notification': () => CreateControllerCommand(),
+    'storage': () => CreateControllerCommand(),
+    'firebase': {
+      'auth': () => CreateControllerCommand(),
+      'messaging': () => CreateControllerCommand(),
+      'dynamic_link': () => CreateControllerCommand(),
+    }
+  },
   'create': {
     'controller': () => CreateControllerCommand(),
     'page': () => CreatePageCommand(),

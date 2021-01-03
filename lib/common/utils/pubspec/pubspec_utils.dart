@@ -108,6 +108,48 @@ class PubspecUtils {
     }
   }
 
+  static Future<bool> addAsset(String path) async {
+    var lines = _pubspec.readAsLinesSync();
+
+    lines.removeWhere((element) => element.startsWith('    - $path'));
+    int type = 0;
+
+    var index = lines.indexWhere((element) {
+      var trimmed = element.trimRight();
+      if (trimmed == '  assets:') {
+        type = 0;
+        return true;
+      }
+      if (trimmed == '  # assets:') {
+        type = 1;
+        return true;
+      }
+      return false;
+    });
+
+    if (index == -1) {
+      var flutterIndex =
+          lines.indexWhere((element) => element.trimRight() == 'flutter:');
+
+      flutterIndex++;
+      lines.insert(flutterIndex, '  assets:');
+      flutterIndex++;
+      index = flutterIndex;
+    }
+
+    if (type == 1) {
+      lines[index] = '  assets:';
+    }
+
+    index++;
+
+    lines.insert(index, '    - $path');
+    _pubspec.writeAsStringSync(lines.join('\n'));
+
+    LogService.success(LocaleKeys.sucess_asset_added.trArgs([path]));
+    return true;
+  }
+
   static String get getPackageImport => !isServerProject
       ? "import 'package:get/get.dart';"
       : "import 'package:get_server/get_server.dart';";
