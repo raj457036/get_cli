@@ -47,7 +47,7 @@ class ShellUtils {
               'global',
               'activate',
               '-sgit',
-              'https://github.com/jonataslaw/get_cli/'
+              'https://github.com/raj457036/get_cli.git'
             ],
             verbose: true);
       } else {
@@ -57,7 +57,8 @@ class ShellUtils {
               'pub',
               'global',
               'activate',
-              'get_cli',
+              '-sgit',
+              'https://github.com/raj457036/get_cli.git',
             ],
             verbose: true);
       }
@@ -69,7 +70,7 @@ class ShellUtils {
               'global',
               'activate',
               '-sgit',
-              'https://github.com/jonataslaw/get_cli/'
+              'https://github.com/raj457036/get_cli.git'
             ],
             verbose: true);
       } else {
@@ -78,7 +79,8 @@ class ShellUtils {
             [
               'global',
               'activate',
-              'get_cli',
+              '-sgit',
+              'https://github.com/raj457036/get_cli.git'
             ],
             verbose: true);
       }
