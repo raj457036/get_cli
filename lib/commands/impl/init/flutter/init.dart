@@ -4,6 +4,7 @@ import '../../../../core/internationalization.dart';
 import '../../../../core/locales.g.dart';
 import '../../../interface/command.dart';
 import 'init_getxmodular.dart';
+import 'init_getxmodular_update.dart';
 import 'init_getxpattern.dart';
 import 'init_katteko.dart';
 
@@ -13,7 +14,8 @@ class InitCommand extends Command {
     final menu = Menu([
       'GetX Pattern (by Kauê)',
       'CLEAN (by Arktekko)',
-      'GetX Moduler Architecture'
+      'GetX Moduler Architecture (Depricated)',
+      'GetX Moduler (Latest) '
     ]);
     final result = menu.choose();
     switch (result.index) {
@@ -30,6 +32,11 @@ class InitCommand extends Command {
       case 2:
         {
           await createInitGetXModuler();
+        }
+        break;
+      case 3:
+        {
+          await createInitGetXModulerUpdate();
         }
         break;
     }

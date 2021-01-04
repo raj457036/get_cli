@@ -20,7 +20,7 @@ import '../../args_mixin.dart';
 
 class CreatePageCommand extends Command with ArgsMixin {
   @override
-  Future<void> execute() async {
+  Future<void> execute({bool dontAskIfExist}) async {
     bool isProject = false;
     if (GetCli.arguments[0] == 'create') {
       isProject = GetCli.arguments[1].split(':').first == 'project';
@@ -34,6 +34,10 @@ class CreatePageCommand extends Command with ArgsMixin {
     String path = pathSplit.join('/');
     path = Structure.replaceAsExpected(path: path);
     if (Directory(path).existsSync()) {
+      if (dontAskIfExist == true) {
+        return;
+      }
+
       LogService.info(Translation(LocaleKeys.ask_existing_page.trArgs([name])));
       final menu = Menu([
         LocaleKeys.options_yes.tr,

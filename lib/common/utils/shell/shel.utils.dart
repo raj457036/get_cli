@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:archive/archive_io.dart';
+import 'package:io/io.dart';
 import 'package:process_run/process_run.dart';
 
 import '../../../core/generator.dart';
@@ -13,6 +15,55 @@ class ShellUtils {
   static void pubGet() async {
     LogService.info('Running `flutter pub get` …');
     await run('flutter', ['pub', 'get'], verbose: true);
+  }
+
+  static Future<bool> loadAndExtractZip(
+    String url, {
+    String extractedPath = 'extracted/',
+    String entryPath = '',
+  }) async {
+    final HttpClient client = HttpClient();
+    final fileSave = File(
+        'temp/${entryPath == null || entryPath == '' ? '' : '$entryPath'}load.zip');
+
+    try {
+      final HttpClientRequest request = await client.getUrl(Uri.parse(url));
+      final HttpClientResponse response = await request.close();
+      await response.pipe(fileSave.openWrite());
+    } catch (e) {
+      LogService.error('Error Occured: $e');
+      return false;
+    }
+
+    LogService.info('Extracting...');
+    final bytes = fileSave.readAsBytesSync();
+    final archive = ZipDecoder().decodeBytes(bytes);
+
+    for (final file in archive) {
+      final filename = 'temp/$extractedPath${file.name}';
+      LogService.success('Added $filename');
+      if (file.isFile) {
+        final data = file.content as List<int>;
+        File(filename)
+          ..createSync(recursive: true)
+          ..writeAsBytesSync(data);
+      } else {
+        final dir = Directory(filename);
+        await dir.create(recursive: true);
+      }
+    }
+
+    return true;
+  }
+
+  static void clearTemp() async {
+    LogService.info('Cleaning Project Structure...');
+    try {
+      await Directory('temp').delete(recursive: true);
+    } catch (e) {
+      LogService.info('something went wrong: $e');
+    }
+    LogService.success('Project Structure Cleaned.');
   }
 
   static void flutterCreate(String path, String org) async {

@@ -20,3 +20,4 @@ export 'utils/function/get_mod_asset_loader.dart';
 export 'utils/function/get_mod_di.dart';
 export 'utils/function/get_mod_either.dart';
 export 'utils/function/get_mod_log_service.dart';
+export 'utils/overlays/get_mod_loader.dart';
