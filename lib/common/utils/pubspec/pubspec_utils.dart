@@ -150,6 +150,28 @@ class PubspecUtils {
     return true;
   }
 
+  static Future<void> installModuleDependencies(String path) async {
+    var file = File(path);
+    if (!file.existsSync()) {
+      return;
+    }
+    final lines = file.readAsLinesSync();
+
+    for (var line in lines) {
+      final info = line.split(' ');
+
+      final package = info[0].split(':');
+      final name = package.first;
+      final version = package.length > 1 ? null : package.last;
+      final isDev = info.length == 2;
+
+      await addDependencies(name,
+          version: version, isDev: isDev, runPubGet: false);
+    }
+
+    ShellUtils.pubGet();
+  }
+
   static String get getPackageImport => !isServerProject
       ? "import 'package:get/get.dart';"
       : "import 'package:get_server/get_server.dart';";

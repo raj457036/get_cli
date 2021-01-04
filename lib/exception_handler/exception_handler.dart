@@ -7,10 +7,6 @@ import 'exceptions/cli_exception.dart';
 
 class ExceptionHandler {
   void handle(dynamic e) {
-    if (e is RangeError) {
-      print(e.stackTrace);
-    }
-
     if (e is CliException) {
       LogService.error(e.message);
       if (e.codeSample.isNotEmpty) {

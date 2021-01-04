@@ -1,7 +1,5 @@
 import 'dart:io';
 
-import 'package:get_cli/samples/impl/getx_modular/core/translations/get_mod_translations.dart';
-
 import '../../../../common/utils/logger/LogUtils.dart';
 import '../../../../common/utils/pubspec/pubspec_utils.dart';
 import '../../../../common/utils/shell/shel.utils.dart';
@@ -10,9 +8,8 @@ import '../../../../core/locales.g.dart';
 import '../../../../core/structure.dart';
 import '../../../../functions/create/create_list_directory.dart';
 import '../../../../functions/create/create_main.dart';
+import '../../../../samples/impl/getx_modular/core/translations/get_mod_translations.dart';
 import '../../../../samples/impl/getx_modular/getx_mod_samples.dart';
-import '../../../../samples/impl/getx_modular/utils/overlays/get_mod_loader.dart';
-import '../../commads_export.dart';
 import '../../commads_export.dart';
 import '../../install/install_get.dart';
 
