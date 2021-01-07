@@ -78,6 +78,7 @@ abstract class LocaleKeys {
   static const sucess_navigation_added = 'sucess_navigation_added';
   static const sucess_file_created = 'sucess_file_created';
   static const sucess_route_created = 'sucess_route_created';
+  static const vscode_extension = 'vscode_extension';
 }
 
 abstract class Locales {
@@ -160,6 +161,8 @@ abstract class Locales {
     'sucess_navigation_added': '%s navigation added successfully.',
     'sucess_file_created': 'File: %s created successfully at path: %s',
     'sucess_route_created': '%s route created successfully.',
+    'vscode_extension':
+        'Install VSCode essential extensions for Modular Archetecture',
   };
   static const pt_BR = {
     'ask_existing_page': 'A página [%s] já existe, deseja sobrescrevê-la?',
