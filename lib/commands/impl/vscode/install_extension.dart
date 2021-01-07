@@ -18,6 +18,7 @@ class VSCodeExtensionCommand extends Command {
       ShellUtils.installVSCodePlugins(path, [
         'bendixma.dart-data-class-generator',
         'redhat.vscode-yaml',
+        'luanpotter.dart-import',
       ]);
     } else {
       LogService.error('VS Code not found in your path!!!');
