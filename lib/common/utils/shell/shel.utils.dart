@@ -71,6 +71,40 @@ class ShellUtils {
     await run('flutter', ['create', '--org', org, path], verbose: true);
   }
 
+  static void installVSCodePlugins(
+    String path,
+    List<String> pluginNames,
+  ) async {
+    LogService.info('Installing Essential VSCode Plugins');
+
+    final result = await run(path, ['--list-extensions'], verbose: true);
+    final extensions = <String>{};
+
+    if (result.stdout is String) {
+      extensions.addAll(result.stdout.toString().toLowerCase().split('\n'));
+    }
+
+    for (var name in pluginNames) {
+      LogService.info('Installing $name extension.');
+
+      if (extensions.contains(name)) {
+        LogService.success('Skipped: Extension $name already installed.');
+        continue;
+      }
+
+      try {
+        await run(
+          path,
+          ['--install-extension', '--force', name],
+          verbose: true,
+        );
+        LogService.success('$name extension installed.');
+      } catch (e) {
+        LogService.error('$name extension Failed: $e');
+      }
+    }
+  }
+
   static void update([isGit = false, forceUpdate = false]) async {
     isGit = GetCli.arguments.contains('--git');
     forceUpdate = GetCli.arguments.contains('-f');
