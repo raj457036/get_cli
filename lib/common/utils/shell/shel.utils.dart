@@ -1,3 +1,5 @@
+import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:archive/archive_io.dart';
@@ -54,6 +56,48 @@ class ShellUtils {
     }
 
     return true;
+  }
+
+  static Future<bool> installFontify() async {
+    LogService.info(
+        'Fontify Service not installed. Installing, Please wait...');
+
+    try {
+      await run('flutter', ['pub', 'global', 'activate', 'fontify'],
+          verbose: true);
+      return true;
+    } catch (e) {
+      LogService.error(e);
+      return false;
+    }
+  }
+
+  static Future<bool> generateIcons(
+    String path,
+    String opath,
+    String classFile, {
+    String fontName = 'Custom Icons',
+    String className = 'CustomIcons',
+    bool recursive = true,
+  }) async {
+    LogService.info('Converting SVG from $path to $opath, please wait...');
+
+    try {
+      final cmds = [
+        path,
+        opath,
+        '--font-name=$fontName',
+        '--class-name=$className',
+        '--output-class-file=$classFile'
+      ];
+
+      if (recursive) cmds.add('--recursive');
+      await run('fontify', cmds);
+      return true;
+    } catch (e) {
+      LogService.error(e);
+      return false;
+    }
   }
 
   static void clearTemp() async {

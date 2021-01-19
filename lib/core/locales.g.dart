@@ -44,6 +44,7 @@ abstract class LocaleKeys {
   static const hint_create_view = 'hint_create_view';
   static const hint_generate_locales = 'hint_generate_locales';
   static const hint_generate_model = 'hint_generate_model';
+  static const hint_generate_icon = 'hint_generate_icon';
   static const hint_help = 'hint_help';
   static const hint_init = 'hint_init';
   static const hint_install = 'hint_install';
@@ -123,6 +124,8 @@ abstract class Locales {
     'hint_create_view': 'Generate view',
     'hint_generate_locales': 'Generate translation file from json files',
     'hint_generate_model': 'generate Class model from json',
+    'hint_generate_icon':
+        'generate icons from svg files in assets/icons folder',
     'hint_help': 'Show this help',
     'hint_init': 'generate the chosen structure on an existing project:',
     'hint_install': 'Use to install a package in your project (dependencies):',

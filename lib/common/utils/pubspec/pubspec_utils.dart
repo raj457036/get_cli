@@ -150,6 +150,59 @@ class PubspecUtils {
     return true;
   }
 
+  static Future<bool> addFont(String path, String fontName) async {
+    var lines = _pubspec.readAsLinesSync();
+
+    lines.removeWhere((element) => element.startsWith('    - $path'));
+    int type = 0;
+
+    var index = lines.indexWhere((element) {
+      var trimmed = element.trimRight();
+      if (trimmed == '  fonts:') {
+        type = 0;
+        return true;
+      }
+      if (trimmed == '  # fonts:') {
+        type = 1;
+        return true;
+      }
+      return false;
+    });
+
+    if (index == -1) {
+      var flutterIndex =
+          lines.indexWhere((element) => element.trimRight() == 'flutter:');
+
+      flutterIndex++;
+      lines.insert(flutterIndex, '  fonts:');
+      flutterIndex++;
+      index = flutterIndex;
+    }
+
+    if (type == 1) {
+      lines[index] = '  fonts:';
+    }
+
+    final fontIndex =
+        lines.indexWhere((element) => element.trim() == '- family: $fontName');
+
+    if (fontIndex != -1) {
+      lines.removeRange(fontIndex, fontIndex + 3);
+    }
+
+    index++;
+
+    lines.insert(index, '''
+    - family: $fontName
+      fonts:
+        - asset: $path
+''');
+    _pubspec.writeAsStringSync(lines.join('\n'));
+
+    LogService.success(LocaleKeys.sucess_asset_added.trArgs([path]));
+    return true;
+  }
+
   static Future<void> installModuleDependencies(String path) async {
     var file = File(path);
     if (!file.existsSync()) {
