@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:cli_menu/cli_menu.dart';
 
 import '../../../common/utils/logger/LogUtils.dart';
@@ -12,19 +10,18 @@ class VSCodeExtensionCommand extends Command {
   @override
   Future<void> execute() async {
     String path;
-    if (Platform.script.path.contains('code') ||
-        Platform.script.path.contains('Microsoft VS Code')) {
-      path = 'code';
-    } else if (Platform.script.path.contains('vscode')) path = 'vscode';
 
     if (path == null) {
-      LogService.error('VS Code not found in your path!!!');
+      LogService.error('Are you sure VS Code is installed in this device?');
       final tryAgain = Menu([
-        'force install',
-        'No Thanks',
+        'Yes, It is.',
+        'No, It isn\'t.',
       ]);
       path = 'code';
-      if (tryAgain.choose().index == 1) return;
+      if (tryAgain.choose().index == 1) {
+        LogService.info('Skipping VS CODE Extension as it is not installed.');
+        return;
+      }
     }
 
     if (path != null) {

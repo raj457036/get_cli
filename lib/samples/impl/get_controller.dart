@@ -36,12 +36,18 @@ class ${_fileName.pascalCase}Controller extends GetxController {
   //TODO: Implement ${_fileName.pascalCase}Controller
   
   final count = 0.obs;
+
   @override
-  void onInit() {}
+  void onInit() {
+    super.onInit();
+  }
   @override
-  void onReady() {}
+  void onReady() {
+    super.onReady();
+  }
   @override
   void onClose() {}
+  
   void increment() => count.value++;
 }
 ''';

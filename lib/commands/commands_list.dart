@@ -1,4 +1,5 @@
 import 'impl/commads_export.dart';
+import 'impl/generate/icons/icons.dart';
 import 'impl/vscode/install_extension.dart';
 
 final commands = {
@@ -13,6 +14,7 @@ final commands = {
   'generate': {
     'locales': () => GenerateLocalesCommand(),
     'model': () => GenerateModelCommand(),
+    'icons': () => GenerateIconsCommand(),
   },
   'setup': {
     'vscode': () => VSCodeExtensionCommand(),
