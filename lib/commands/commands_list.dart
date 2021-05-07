@@ -19,6 +19,7 @@ final commands = {
   'setup': {
     'vscode': () => VSCodeExtensionCommand(),
   },
+  'hello': () => HelpCommand(),
   'help': () => HelpCommand(),
   'init': () => InitCommand(),
   'install': () => InstallCommand(),

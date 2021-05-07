@@ -1,9 +1,7 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:archive/archive_io.dart';
-import 'package:io/io.dart';
 import 'package:process_run/process_run.dart';
 
 import '../../../core/generator.dart';
@@ -100,7 +98,7 @@ class ShellUtils {
     }
   }
 
-  static void clearTemp() async {
+  static Future<void> clearTemp() async {
     LogService.info('Cleaning Project Structure...');
     try {
       await Directory('temp').delete(recursive: true);

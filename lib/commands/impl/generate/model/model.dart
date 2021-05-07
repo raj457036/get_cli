@@ -52,7 +52,7 @@ class GenerateModelCommand extends Command with ArgsMixin {
     if (!containsArg('--skipProvider')) {
       List<String> pathSplit = Structure.safeSplitPath(modelPath);
       pathSplit.removeWhere((element) => element == '.' || element == 'lib');
-      await handleFileCreate(
+      handleFileCreate(
         name,
         'provider',
         onCommand,

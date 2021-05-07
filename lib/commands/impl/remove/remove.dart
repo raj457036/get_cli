@@ -12,10 +12,10 @@ class RemoveCommand extends Command {
     List<String> args = List.from(GetCli.arguments);
     var package = args.first;
     if (args.length == 1) {
-      await PubspecUtils.removeDependencies(package);
+      PubspecUtils.removeDependencies(package);
     } else {
       for (var element in args) {
-        await PubspecUtils.removeDependencies(
+        PubspecUtils.removeDependencies(
           element,
         );
       }

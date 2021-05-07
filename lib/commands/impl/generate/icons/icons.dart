@@ -17,7 +17,7 @@ import '../../args_mixin.dart';
 class GenerateIconsCommand extends Command with ArgsMixin {
   @override
   Future<void> execute() async {
-    final installed = await isFontifyInstalled();
+    final installed = isFontifyInstalled();
 
     String tipath = p.basenameWithoutExtension(withArgument).pascalCase;
     LogService.info('Use default SVG location (assets/icons)');

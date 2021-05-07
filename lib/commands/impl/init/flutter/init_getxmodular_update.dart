@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:get_cli/commands/impl/vscode/install_extension.dart';
-import 'package:get_cli/samples/impl/getx_modular/core/translations/get_mod_translations.dart';
 import 'package:io/io.dart';
 
 import '../../../../common/utils/logger/LogUtils.dart';

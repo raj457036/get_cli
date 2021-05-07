@@ -6,7 +6,7 @@ import '../../interface/command.dart';
 class UpdateCommand extends Command {
   @override
   Future<void> execute() async {
-    await ShellUtils.update();
+    ShellUtils.update();
   }
 
   @override

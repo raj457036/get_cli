@@ -19,7 +19,7 @@ Future<void> addRoute(
   List<String> lines = [];
 
   if (routesFile.path.isEmpty) {
-    await RouteSample().create(skipFormatter: true);
+    RouteSample().create(skipFormatter: true);
     routesFile = File(RouteSample().path);
     lines = routesFile.readAsLinesSync();
   } else {
@@ -62,8 +62,7 @@ Future<void> addRoute(
 
   lines.insert(indexEndRoutes, line);
 
-  await writeFile(routesFile.path, lines.join('\n'),
-      overwrite: true, logger: false);
+  writeFile(routesFile.path, lines.join('\n'), overwrite: true, logger: false);
   LogService.success(
       Translation(LocaleKeys.sucess_route_created).trArgs([nameRoute]));
 

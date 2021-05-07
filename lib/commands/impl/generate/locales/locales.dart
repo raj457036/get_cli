@@ -91,7 +91,7 @@ class GenerateLocalesCommand extends Command with ArgsMixin {
     FileModel _fileModel =
         Structure.model('locales', 'generate_locales', false, on: onCommand);
 
-    await GenerateLocalesSample(
+    GenerateLocalesSample(
             parsedKeys, parsedLocales.toString(), translationsKeys.toString(),
             path: _fileModel.path + '.g.dart')
         .create();
@@ -107,11 +107,11 @@ class GenerateLocalesCommand extends Command with ArgsMixin {
       if (localization[key] is Map) {
         var nextAccKey = key;
         if (accKey != null) {
-          nextAccKey = '${accKey}_${key}';
+          nextAccKey = '${accKey}_$key';
         }
         _resolve(localization[key], result, nextAccKey);
       } else {
-        result[accKey != null ? '${accKey}_${key}' : key] = localization[key];
+        result[accKey != null ? '${accKey}_$key' : key] = localization[key];
       }
     }
   }

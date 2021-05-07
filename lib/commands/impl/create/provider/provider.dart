@@ -8,7 +8,7 @@ import '../../args_mixin.dart';
 class CreateProviderCommand extends Command with ArgsMixin {
   @override
   Future<void> execute() async {
-    await handleFileCreate(name, 'provider', onCommand, onCommand != null,
+    handleFileCreate(name, 'provider', onCommand, onCommand != null,
         ProviderSample(name), 'providers');
   }
 

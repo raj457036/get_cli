@@ -76,13 +76,13 @@ dynamic decodeJSON(String rawJson) {
         'invalid json format: \n${e.toString().split("FormatException:").last}');
     if (!Platform.isWindows) exit(0);
   } catch (e) {
-    LogService.error('Unexpected error ${e}');
+    LogService.error('Unexpected error $e');
     if (!Platform.isWindows) exit(0);
   }
 }
 
 WithWarning<Map> mergeObj(Map obj, Map other, String path) {
-  List<Warning> warnings = List<Warning>();
+  List<Warning> warnings = <Warning>[];
   final Map clone = Map.from(obj);
   other.forEach((k, v) {
     if (clone[k] == null) {
@@ -127,7 +127,7 @@ WithWarning<Map> mergeObj(Map obj, Map other, String path) {
 
 WithWarning<Map> mergeObjectList(List<dynamic> list, String path,
     [int idx = -1]) {
-  List<Warning> warnings = List<Warning>();
+  List<Warning> warnings = <Warning>[];
   Map obj = Map();
   for (var i = 0; i < list.length; i++) {
     final toMerge = list[i];

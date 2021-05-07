@@ -70,7 +70,7 @@ class CreateControllerCommand extends Command with ArgsMixin {
         }
       }
     }
-    File controllerFile = await handleFileCreate(
+    File controllerFile = handleFileCreate(
       name,
       'controller',
       onCommand,

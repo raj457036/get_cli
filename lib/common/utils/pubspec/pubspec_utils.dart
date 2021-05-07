@@ -69,7 +69,7 @@ class PubspecUtils {
     return true;
   }
 
-  static void removeDependencies(String package, {bool logger = true}) async {
+  static void removeDependencies(String package, {bool logger = true}) {
     if (logger) LogService.info('Removing package: "$package"');
 
     var lines = _pubspec.readAsLinesSync();
@@ -222,7 +222,7 @@ class PubspecUtils {
           version: version, isDev: isDev, runPubGet: false);
     }
 
-    ShellUtils.pubGet();
+    await ShellUtils.pubGet();
   }
 
   static String get getPackageImport => !isServerProject

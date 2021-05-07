@@ -42,11 +42,11 @@ class CreateScreenCommand extends Command with ArgsMixin {
       ]);
       final result = menu.choose();
       if (result.index == 0) {
-        await _writeFiles(path, name, overwrite: true);
+        _writeFiles(path, name, overwrite: true);
       }
     } else {
       Directory(path).createSync(recursive: true);
-      await _writeFiles(path, name);
+      _writeFiles(path, name);
     }
 
     /*  List<String> pathScreenSplit = Structure.safeSplitPath(screenDir);

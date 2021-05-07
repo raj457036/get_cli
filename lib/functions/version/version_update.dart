@@ -12,7 +12,7 @@ import 'check_dev_version.dart';
 import 'print_get_cli.dart';
 
 void checkForUpdate() async {
-  if (!await CliConfig.updateIsCheckingToday()) {
+  if (!CliConfig.updateIsCheckingToday()) {
     if (!isDevVersion()) {
       await PubDevApi.getLatestVersionFromPackage('get_cli')
           .then((versionInPubDev) async {
@@ -38,7 +38,7 @@ void checkForUpdate() async {
           }
         });
       });
-      await CliConfig.setUpdateCheckToday();
+      CliConfig.setUpdateCheckToday();
     }
   }
 }

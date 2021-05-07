@@ -60,5 +60,5 @@ Future<void> createView(String name,
     }
   }
 
-  await handleFileCreate(name, 'view', onCommand, true, sample, 'views');
+  handleFileCreate(name, 'view', onCommand, true, sample, 'views');
 }

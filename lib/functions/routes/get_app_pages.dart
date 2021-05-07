@@ -16,7 +16,7 @@ Future<void> addAppPage(String name, String bindingDir, String viewDir) async {
   String path = viewDir;
   List<String> lines = [];
   if (appPagesFile.path.isEmpty) {
-    await AppPagesSample().create(skipFormatter: true);
+    AppPagesSample().create(skipFormatter: true);
     appPagesFile = File(AppPagesSample().path);
     lines = appPagesFile.readAsLinesSync();
   } else {
@@ -107,7 +107,7 @@ ${_getTabs(tabEspaces)}),''';
   lines.insert(0, import + bindingDir + "';");
   lines.insert(0, import + viewDir + "';");
 
-  await writeFile(appPagesFile.path, lines.join('\n'),
+  writeFile(appPagesFile.path, lines.join('\n'),
       overwrite: true, logger: false);
 }
 
