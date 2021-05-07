@@ -15,7 +15,7 @@ import '../../../../functions/create/create_main.dart';
 import '../../commads_export.dart';
 import '../../install/install_get.dart';
 
-Future<void> createInitGetXModulerUpdate() async {
+Future<void> createInitGetXModulerUpdate([String version]) async {
   bool canContinue = await createMain();
   if (!canContinue) return;
 
@@ -31,9 +31,16 @@ Future<void> createInitGetXModulerUpdate() async {
     'Downloading latest getx modular boilerplate from'
     ' `https://github.com/raj457036/flutter_getx_boiler_plate.git`',
   );
+  String path =
+      'https://github.com/raj457036/flutter_getx_boiler_plate/archive/master.zip';
+
+  if (version != null) {
+    path =
+        'https://github.com/raj457036/flutter_getx_boiler_plate/archive/refs/heads/feature/$path.zip';
+  }
 
   final done = await ShellUtils.loadAndExtractZip(
-    'https://github.com/raj457036/flutter_getx_boiler_plate/archive/master.zip',
+    path,
     entryPath: 'module/',
   );
 

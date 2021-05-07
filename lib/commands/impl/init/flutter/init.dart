@@ -15,7 +15,8 @@ class InitCommand extends Command {
       'GetX Pattern (by Kauê)',
       'CLEAN (by Arktekko)',
       'GetX Moduler Architecture (Depricated)',
-      'GetX Moduler (Latest) '
+      'GetX Moduler (Depricated (upto  V1.22.6))',
+      'GetX Moduler V2 (Latest with null safety)'
     ]);
     final result = menu.choose();
     switch (result.index) {
@@ -39,6 +40,11 @@ class InitCommand extends Command {
           await createInitGetXModulerUpdate();
         }
         break;
+      case 4:
+        {
+          await createInitGetXModulerUpdate('null_safety');
+        }
+        break;
     }
     return;
   }
@@ -48,6 +54,6 @@ class InitCommand extends Command {
 
   @override
   bool validate() {
-    return true;
+    return false;
   }
 }

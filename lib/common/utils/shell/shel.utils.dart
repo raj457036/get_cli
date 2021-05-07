@@ -14,7 +14,7 @@ import '../pub_dev/pub_dev_api.dart';
 import '../pubspec/pubspec_lock.dart';
 
 class ShellUtils {
-  static void pubGet() async {
+  static Future<void> pubGet() async {
     LogService.info('Running `flutter pub get` …');
     await run('flutter', ['pub', 'get'], verbose: true);
   }
@@ -110,7 +110,7 @@ class ShellUtils {
     LogService.success('Project Structure Cleaned.');
   }
 
-  static void flutterCreate(String path, String org) async {
+  static Future<void> flutterCreate(String path, String org) async {
     LogService.info('Running `flutter create $path` …');
     await run('flutter', ['create', '--org', org, path], verbose: true);
   }
