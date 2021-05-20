@@ -7,6 +7,7 @@ import 'package:get_cli/common/utils/pubspec/pubspec_utils.dart';
 import 'package:get_cli/common/utils/shell/shel.utils.dart';
 import 'package:get_cli/functions/create/create_list_directory.dart';
 import 'package:path/path.dart' as p;
+import 'package:process_run/cmd_run.dart';
 import 'package:recase/recase.dart';
 
 import '../../../../core/internationalization.dart';
@@ -17,7 +18,7 @@ import '../../args_mixin.dart';
 class GenerateIconsCommand extends Command with ArgsMixin {
   @override
   Future<void> execute() async {
-    final installed = isFontifyInstalled();
+    final installed = await isFontifyInstalled();
 
     String tipath = p.basenameWithoutExtension(withArgument).pascalCase;
     LogService.info('Use default SVG location (assets/icons)');
@@ -68,18 +69,9 @@ class GenerateIconsCommand extends Command with ArgsMixin {
     LogService.success('CustomIcons class Generated Successfully.');
   }
 
-  bool isFontifyInstalled() {
-    final paths = Platform.environment['PATH'].split(':');
-    for (var path in paths) {
-      final files = Directory(path).listSync();
-      files.retainWhere((element) => element is File);
-
-      final isFontifyInstalled =
-          files.map((e) => e.path.split('/').last).contains('fontify');
-
-      if (isFontifyInstalled) return true;
-    }
-    return false;
+  Future<bool> isFontifyInstalled() async {
+    final result = await run('fontify', []);
+    return result.exitCode != 1;
   }
 
   Future<bool> installFontify() async {
