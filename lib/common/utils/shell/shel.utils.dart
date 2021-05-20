@@ -90,7 +90,12 @@ class ShellUtils {
       ];
 
       if (recursive) cmds.add('--recursive');
-      await run('fontify', cmds);
+      print("Running... ${['fontify', ...cmds].join(" ")}");
+      await run(
+        'fontify',
+        cmds,
+        runInShell: true,
+      );
       return true;
     } catch (e) {
       LogService.error(e);
