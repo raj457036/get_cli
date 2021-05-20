@@ -50,7 +50,11 @@ class GenerateIconsCommand extends Command with ArgsMixin {
   bool validate() => true;
 
   Future<void> generateIcons(String tipath) async {
-    final path = tipath ?? 'assets/icons/';
+    var path = 'assets/icons/';
+
+    if (tipath?.trim()?.isNotEmpty ?? false) {
+      path = tipath.trim();
+    }
     createListDirectory([
       Directory('fonts/icons/'),
       Directory('lib/app/core/icons/'),
