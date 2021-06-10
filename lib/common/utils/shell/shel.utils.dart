@@ -17,6 +17,21 @@ class ShellUtils {
     await run('flutter', ['pub', 'get'], verbose: true);
   }
 
+  static Future<void> loadBranchFolder(
+    String branch, {
+    String extractedPath = 'extracted/',
+    String entryPath = '',
+  }) async {
+    await run('git', [
+      'clone',
+      'https://github.com/raj457036/flutter_getx_boiler_plate.git',
+      '--branch',
+      branch,
+      '--single-branch',
+      extractedPath + entryPath,
+    ]);
+  }
+
   static Future<bool> loadAndExtractZip(
     String url, {
     String extractedPath = 'extracted/',

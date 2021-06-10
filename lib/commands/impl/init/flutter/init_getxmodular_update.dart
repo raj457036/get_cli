@@ -14,7 +14,7 @@ import '../../../../functions/create/create_main.dart';
 import '../../commads_export.dart';
 import '../../install/install_get.dart';
 
-Future<void> createInitGetXModulerUpdate([String version]) async {
+Future<void> createInitGetXModulerUpdate([String version = 'master']) async {
   bool canContinue = await createMain();
   if (!canContinue) return;
 
@@ -26,27 +26,7 @@ Future<void> createInitGetXModulerUpdate([String version]) async {
 
   createListDirectory(initialDirs);
 
-  LogService.info(
-    'Downloading latest getx modular boilerplate from'
-    ' `https://github.com/raj457036/flutter_getx_boiler_plate.git`',
-  );
-  String path =
-      'https://github.com/raj457036/flutter_getx_boiler_plate/archive/master.zip';
-
-  if (version != null) {
-    path =
-        'https://github.com/raj457036/flutter_getx_boiler_plate/archive/refs/heads/feature/$version.zip';
-  }
-
-  final done = await ShellUtils.loadAndExtractZip(
-    path,
-    entryPath: 'module/',
-  );
-
-  if (!done) {
-    LogService.error('Extraction Failed');
-    return false;
-  }
+  await ShellUtils.loadBranchFolder(version, extractedPath: 'temp/extracted/');
 
   await Future.wait([
     PubspecUtils.addAsset('assets/secrets/'),
@@ -54,12 +34,12 @@ Future<void> createInitGetXModulerUpdate([String version]) async {
   ]);
 
   await copyPath(
-    'temp/extracted/flutter_getx_boiler_plate-master/lib/',
+    'temp/extracted/lib/',
     'lib/',
   );
 
   await copyPath(
-    'temp/extracted/flutter_getx_boiler_plate-master/assets/',
+    'temp/extracted/assets/',
     'assets/',
   );
 
@@ -67,7 +47,7 @@ Future<void> createInitGetXModulerUpdate([String version]) async {
 
   LogService.info('Installing Dependencies');
   await PubspecUtils.installModuleDependencies(
-    'temp/extracted/flutter_getx_boiler_plate-master/install.txt',
+    'temp/extracted/install.txt',
   );
 
   await Future.wait([
