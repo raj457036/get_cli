@@ -35,7 +35,7 @@ Future<void> createInitGetXModulerUpdate([String version]) async {
 
   if (version != null) {
     path =
-        'https://github.com/raj457036/flutter_getx_boiler_plate/archive/refs/heads/feature/$path.zip';
+        'https://github.com/raj457036/flutter_getx_boiler_plate/archive/refs/heads/feature/$version.zip';
   }
 
   final done = await ShellUtils.loadAndExtractZip(
